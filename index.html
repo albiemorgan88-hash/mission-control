@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Control — Phil Patterson</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{dark:'#0a0a0f',card:'#12121a',border:'#1e1e2e',accent:'#3b82f6',green:'#22c55e',amber:'#f59e0b',red:'#ef4444',muted:'#6b7280'}}}}</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+body{font-family:'Inter',sans-serif;background:#0a0a0f}
+.mono{font-family:'JetBrains Mono',monospace}
+.card{background:#12121a;border:1px solid #1e1e2e;transition:all .2s}
+.card:hover{border-color:#2a2a3e}
+.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.collapse-content.open{max-height:2000px}
+.pulse-green{animation:pulse-g 2s infinite}
+.pulse-amber{animation:pulse-a 2s infinite}
+@keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+@keyframes pulse-a{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 6px rgba(245,158,11,0)}}
+.metric{background:#0f0f17;border:1px solid #1e1e2e;border-radius:.5rem;padding:.75rem 1rem}
+</style>
+</head>
+<body class="text-gray-300 min-h-screen">
+
+<!-- Header -->
+<header class="border-b border-border sticky top-0 bg-dark/80 backdrop-blur-xl z-50">
+<div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-accent flex items-center justify-center font-bold text-white text-sm">MC</div>
+<div>
+<h1 class="text-white font-bold text-lg leading-tight">Mission Control</h1>
+<p class="text-xs text-muted">Phil Patterson — Blue Canvas Ltd</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span id="timestamp" class="text-xs text-muted mono"></span>
+<button onclick="location.reload()" class="text-xs bg-card border border-border px-3 py-1.5 rounded hover:border-accent transition">↻ Refresh</button>
+</div>
+</div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+<!-- Revenue Pipeline Banner -->
+<div class="card rounded-xl p-5">
+<h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+<span class="text-accent">£</span> Revenue Pipeline
+<span class="text-xs text-muted font-normal ml-auto">£100k+ annual potential</span>
+</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="metric">
+<div class="text-xs text-muted mb-1">Blue Canvas</div>
+<div class="text-white font-bold text-lg mono">£6k<span class="text-xs text-muted font-normal">/mo</span></div>
+</div>
+<div class="metric">
+<div class="text-xs text-muted mb-1">Tender Pipeline</div>
+<div class="text-white font-bold text-lg mono">£76.2k</div>
+</div>
+<div class="metric">
+<div class="text-xs text-muted mb-1">UK Trade Jobs</div>
+<div class="text-white font-bold text-lg mono">£2-3k<span class="text-xs text-muted font-normal">/mo @M12</span></div>
+</div>
+<div class="metric">
+<div class="text-xs text-muted mb-1">ClubDraw (10 clubs)</div>
+<div class="text-white font-bold text-lg mono">£13k<span class="text-xs text-muted font-normal">/yr</span></div>
+</div>
+</div>
+</div>
+
+<!-- Project Cards -->
+<div class="grid md:grid-cols-2 gap-4">
+
+<!-- Blue Canvas -->
+<div class="card rounded-xl overflow-hidden">
+<div class="p-5 cursor-pointer" onclick="toggle('bc')">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-green pulse-green"></div>
+<h3 class="text-white font-semibold">Blue Canvas</h3>
+<span class="text-xs bg-green/10 text-green px-2 py-0.5 rounded">PRIMARY</span>
+</div>
+<svg id="bc-chevron" class="w-4 h-4 text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="metric"><div class="text-xs text-muted">GSC Pos</div><div class="text-white font-bold mono">4.7</div></div>
+<div class="metric"><div class="text-xs text-muted">Traffic/wk</div><div class="text-white font-bold mono">78 <span class="text-green text-xs">↑28%</span></div></div>
+<div class="metric"><div class="text-xs text-muted">Blog Posts</div><div class="text-white font-bold mono">97</div></div>
+</div>
+</div>
+<div id="bc" class="collapse-content">
+<div class="px-5 pb-5 space-y-3 border-t border-border pt-4">
+<div class="text-xs space-y-1">
+<p><span class="text-muted">URL:</span> <a href="https://bluecanvas.ai" class="text-accent hover:underline">bluecanvas.ai</a> · Webflow (Niall redesigning)</p>
+<p><span class="text-muted">SEO:</span> Position 4.7 "ai consultancy northern ireland" — <span class="text-green font-semibold">PAGE ONE</span></p>
+<p><span class="text-muted">Target:</span> £6k/month revenue</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Tenders</p>
+<div class="text-xs space-y-0.5">
+<p>✅ Donegal — €4.2k (submitted)</p>
+<p>✅ ITI — £72k (submitted)</p>
+<p>✅ CCS RM6200 + RM6173 (submitted)</p>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Leads</p>
+<p class="text-xs">🔥 Tim Clarke (Quay Group) — OpenClaw project call next week</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Next Actions</p>
+<div class="text-xs space-y-0.5">
+<p>→ Niall redesign</p>
+<p>→ Cyber Essentials cert (~£300)</p>
+<p>→ Professional indemnity insurance</p>
+<p>→ Google Ads (parked)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Satellite Sites -->
+<div class="card rounded-xl overflow-hidden">
+<div class="p-5 cursor-pointer" onclick="toggle('sat')">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-amber pulse-amber"></div>
+<h3 class="text-white font-semibold">Satellite Sites</h3>
+<span class="text-xs bg-amber/10 text-amber px-2 py-0.5 rounded">INDEXING</span>
+</div>
+<svg id="sat-chevron" class="w-4 h-4 text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="metric"><div class="text-xs text-muted">Sites</div><div class="text-white font-bold mono">3</div></div>
+<div class="metric"><div class="text-xs text-muted">Leads</div><div class="text-white font-bold mono">2</div></div>
+<div class="metric"><div class="text-xs text-muted">Saved</div><div class="text-white font-bold mono">$23<span class="text-xs text-muted">/mo</span></div></div>
+</div>
+</div>
+<div id="sat" class="collapse-content">
+<div class="px-5 pb-5 space-y-3 border-t border-border pt-4">
+<div class="text-xs space-y-1">
+<p>🟢 openclawconsultant.co.uk — Vercel, 7 pages</p>
+<p>🟡 zapierconsultant.co.uk — Webflow</p>
+<p>🟡 aiagentsetup.co.uk — Webflow</p>
+<p class="text-muted mt-1">All GSC verified, sitemaps submitted</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Leads</p>
+<p class="text-xs">Joe Claw (15 Feb) · Tim Clarke (21 Feb)</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Next Actions</p>
+<div class="text-xs space-y-0.5">
+<p>→ Move zapier + aiagentsetup to Vercel</p>
+<p>→ Set up GA4/GSC for openclawconsultant</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- UK Trade Jobs -->
+<div class="card rounded-xl overflow-hidden">
+<div class="p-5 cursor-pointer" onclick="toggle('utj')">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-green pulse-green"></div>
+<h3 class="text-white font-semibold">UK Trade Jobs</h3>
+<span class="text-xs bg-green/10 text-green px-2 py-0.5 rounded">LIVE</span>
+</div>
+<svg id="utj-chevron" class="w-4 h-4 text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="metric"><div class="text-xs text-muted">Pages</div><div class="text-white font-bold mono">327+</div></div>
+<div class="metric"><div class="text-xs text-muted">Jobs</div><div class="text-white font-bold mono">3,009</div></div>
+<div class="metric"><div class="text-xs text-muted">Guides</div><div class="text-white font-bold mono">25</div></div>
+</div>
+</div>
+<div id="utj" class="collapse-content">
+<div class="px-5 pb-5 space-y-3 border-t border-border pt-4">
+<div class="text-xs space-y-1">
+<p><span class="text-muted">URL:</span> <a href="https://uktradejobs.com" class="text-accent hover:underline">uktradejobs.com</a> · Vercel/Next.js</p>
+<p><span class="text-muted">Brand:</span> <span class="inline-block w-3 h-3 rounded" style="background:#1A2744"></span> Navy + <span class="inline-block w-3 h-3 rounded" style="background:#F59E0B"></span> Amber</p>
+<p><span class="text-muted">Target:</span> £2-3k/month by month 12</p>
+<p><span class="text-muted">Analytics:</span> GA4 G-PXMWKB0V2G · GSC verified</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Next Actions</p>
+<div class="text-xs space-y-0.5">
+<p>→ Reed API key for live job feed</p>
+<p>→ More career guides</p>
+<p>→ AI CV Builder</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ClubDraw -->
+<div class="card rounded-xl overflow-hidden">
+<div class="p-5 cursor-pointer" onclick="toggle('cd')">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-amber pulse-amber"></div>
+<h3 class="text-white font-semibold">ClubDraw / Ardmore</h3>
+<span class="text-xs bg-amber/10 text-amber px-2 py-0.5 rounded">DEMO</span>
+</div>
+<svg id="cd-chevron" class="w-4 h-4 text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="metric"><div class="text-xs text-muted">Pages</div><div class="text-white font-bold mono">11</div></div>
+<div class="metric"><div class="text-xs text-muted">10 clubs</div><div class="text-white font-bold mono">£13k<span class="text-xs text-muted">/yr</span></div></div>
+<div class="metric"><div class="text-xs text-muted">50 clubs</div><div class="text-white font-bold mono">£65k<span class="text-xs text-muted">/yr</span></div></div>
+</div>
+</div>
+<div id="cd" class="collapse-content">
+<div class="px-5 pb-5 space-y-3 border-t border-border pt-4">
+<div class="text-xs space-y-1">
+<p><span class="text-muted">Demo:</span> <a href="https://albiemorgan88-hash.github.io/clubdraw-demo/" class="text-accent hover:underline">clubdraw-demo</a></p>
+<p><span class="text-muted">Model:</span> 10% of pot (absorb Stripe fees)</p>
+<p><span class="text-muted">Scale:</span> NW Cricket → GAA → Rugby → Football</p>
+</div>
+<div>
+<p class="text-xs font-semibold text-muted uppercase mb-1">Next Actions</p>
+<div class="text-xs space-y-0.5">
+<p>→ Committee presentation</p>
+<p>→ Stripe Connect setup</p>
+<p>→ Gambling licence research</p>
+<p>→ Domain purchase</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- end grid -->
+
+<!-- Actions Needed -->
+<div class="card rounded-xl p-5">
+<h2 class="text-white font-semibold mb-4 flex items-center gap-2">⚡ Priority Actions</h2>
+<div class="space-y-2 text-sm">
+<div class="flex items-center gap-3 p-2 rounded bg-red/5 border border-red/20"><span class="w-2 h-2 rounded-full bg-red flex-shrink-0"></span><span>Cyber Essentials cert (~£300) — <span class="text-red">CCS blocker</span></span></div>
+<div class="flex items-center gap-3 p-2 rounded bg-red/5 border border-red/20"><span class="w-2 h-2 rounded-full bg-red flex-shrink-0"></span><span>Professional indemnity insurance — <span class="text-red">CCS blocker</span></span></div>
+<div class="flex items-center gap-3 p-2 rounded bg-amber/5 border border-amber/20"><span class="w-2 h-2 rounded-full bg-amber flex-shrink-0"></span><span>Update Google Business Profile (new address + phone)</span></div>
+<div class="flex items-center gap-3 p-2 rounded bg-amber/5 border border-amber/20"><span class="w-2 h-2 rounded-full bg-amber flex-shrink-0"></span><span>Tim Clarke call — prep and schedule</span></div>
+<div class="flex items-center gap-3 p-2 rounded bg-amber/5 border border-amber/20"><span class="w-2 h-2 rounded-full bg-amber flex-shrink-0"></span><span>Blog SEO title template in Webflow Designer</span></div>
+<div class="flex items-center gap-3 p-2 rounded bg-amber/5 border border-amber/20"><span class="w-2 h-2 rounded-full bg-amber flex-shrink-0"></span><span>Move zapierconsultant + aiagentsetup to Vercel</span></div>
+<div class="flex items-center gap-3 p-2 rounded"><span class="w-2 h-2 rounded-full bg-green flex-shrink-0"></span><span>Set up GA4/GSC for openclawconsultant.co.uk</span></div>
+<div class="flex items-center gap-3 p-2 rounded"><span class="w-2 h-2 rounded-full bg-green flex-shrink-0"></span><span>Present ClubDraw to Ardmore committee</span></div>
+</div>
+</div>
+
+<!-- Bottom Grid: Financials, Assets, Cron -->
+<div class="grid md:grid-cols-3 gap-4">
+
+<div class="card rounded-xl p-5">
+<h2 class="text-white font-semibold mb-3 text-sm">💰 Financials</h2>
+<div class="space-y-2 text-xs">
+<div class="flex justify-between"><span class="text-muted">Debt</span><span class="text-white mono">~£60k</span></div>
+<div class="flex justify-between"><span class="text-muted">Breakeven</span><span class="text-white mono">£3.1-3.5k/mo</span></div>
+<div class="flex justify-between"><span class="text-muted">Webflow cost</span><span class="text-white mono">~$46/mo</span></div>
+<div class="flex justify-between"><span class="text-muted">Savings</span><span class="text-green mono">$23/mo</span></div>
+</div>
+</div>
+
+<div class="card rounded-xl p-5">
+<h2 class="text-white font-semibold mb-3 text-sm">🏦 Assets</h2>
+<div class="space-y-2 text-xs">
+<div class="flex justify-between"><span class="text-muted">Wallet</span><span class="text-white mono">~107 USDC</span></div>
+<div class="flex justify-between"><span class="text-muted">Domains</span><span class="text-white mono">7 owned</span></div>
+<div class="flex justify-between"><span class="text-muted">GitHub repos</span><span class="text-white mono">6+ showcases</span></div>
+<div class="flex justify-between"><span class="text-muted">Skills built</span><span class="text-white mono">18+</span></div>
+</div>
+</div>
+
+<div class="card rounded-xl p-5">
+<h2 class="text-white font-semibold mb-3 text-sm">⏰ Cron Jobs</h2>
+<div class="space-y-2 text-xs">
+<div class="flex justify-between"><span class="text-muted">SEO Audit</span><span class="text-white mono">Mon 9am</span></div>
+<div class="flex justify-between"><span class="text-muted">Nightly Build</span><span class="text-white mono">3am PST daily</span></div>
+<div class="flex justify-between"><span class="text-muted">Money Scout</span><span class="text-white mono">Sun 9am</span></div>
+</div>
+</div>
+
+</div>
+
+</main>
+
+<footer class="border-t border-border mt-8 py-4 text-center text-xs text-muted">
+Blue Canvas Ltd · Mission Control v1 · Built with OpenClaw
+</footer>
+
+<script>
+function toggle(id){
+const el=document.getElementById(id);
+const chev=document.getElementById(id+'-chevron');
+el.classList.toggle('open');
+chev.style.transform=el.classList.contains('open')?'rotate(180deg)':'';
+}
+document.getElementById('timestamp').textContent='Updated: '+new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
+</script>
+</body>
+</html>
